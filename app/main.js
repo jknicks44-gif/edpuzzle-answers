@@ -159,7 +159,10 @@ export async function get_attempt() {
 }
 
 async function get_assignment() {
-  let assignment_id = get_assignment_id();
+  let parts = window.real_location.href.split("/");
+let assignment_index = parts.indexOf("assignments");
+let assignment_id = assignment_index !== -1 ? parts[assignment_index + 1] : undefined;
+
 
   if (typeof assignment_id == "undefined") {
     throw new Error("Could not infer the assignment ID. Are you on the correct URL?");
